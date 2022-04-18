@@ -9,4 +9,10 @@ public class Referee extends Member{
         this.name=name;
         this.training=training;
     }
+
+    public Referee(Member m,String name, String training){
+        super(m);
+        this.name=name;
+        this.training=training;
+    }
 }

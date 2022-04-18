@@ -9,6 +9,13 @@ public class Member {
         this.password = password;
     }
 
+    public Member(Member m){
+        this.userName=m.userName;
+        this.password=m.password;
+    }
+
+
+
     public void setUserName(String userName) {
         this.userName = userName;
     }

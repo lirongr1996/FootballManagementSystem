@@ -1,10 +1,14 @@
 package DataAccess;
-import Domain.User;
+import Domain.Coach;
+import Domain.Member;
+import Domain.Team;
+
 import java.util.*;
 
-public class UserDao implements Dao<User> {
+public class UserDao implements Dao<Member> {
 
-    private List<User> users = new ArrayList<>();
+    private List<Member> members = new ArrayList<>();
+    private List<Team>teams=new ArrayList<>();
 
     private static final UserDao instance = new UserDao();
 
@@ -19,33 +23,33 @@ public class UserDao implements Dao<User> {
     }
 
     @Override
-    public Optional<User> get(long id) {
-        return Optional.ofNullable(users.get((int) id));
+    public Optional<Member> get(long id) {
+        return Optional.ofNullable(members.get((int) id));
     }
 
     @Override
-    public List<User> getAll() {
-        return users;
+    public List<Member> getAll() {
+        return members;
     }
 
     @Override
 
-    public void save(User user) {
-               users.add(user);
-               System.out.println(users.toString());
+    public void save(Member user) {
+        members.add(user);
+               System.out.println(members.toString());
     }
 
     @Override
-    public void update(User user, String[] params) {
+    public void update(Member user, String[] params) {
         //user.setName(Objects.requireNonNull(                 params[0], "Name cannot be null"));
         //user.setEmail(Objects.requireNonNull(                params[1], "Email cannot be null"));
 
-        users.add(user);
-        users.toString();
+        members.add(user);
+        members.toString();
     }
 
     @Override
-    public void delete(User user) {
-        users.remove(user);
+    public void delete(Member user) {
+        members.remove(user);
     }
 }
