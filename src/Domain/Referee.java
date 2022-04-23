@@ -15,4 +15,5 @@ public class Referee extends Member{
         this.name=name;
         this.training=training;
     }
+
 }
