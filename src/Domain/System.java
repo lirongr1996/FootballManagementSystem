@@ -2,6 +2,7 @@ package Domain;
 
 import DataAccess.Dao;
 import DataAccess.UserDao;
+import Service.UserService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,10 @@ public class System {
     public void RefereeRegistration(String username, String name,String training){
         if (!CheckRepresentative(username))//בודק אם המשתמש הוא נציג התאחדות
             return;
+        //System.out.println("Set password:");
+        String password = UserService.reader.next();
+        Referee ref = new Referee(username, password, name, training);
+        ud.update(ref,null);
     }
 
 
