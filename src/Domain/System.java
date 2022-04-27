@@ -40,8 +40,16 @@ public class System {
         if (!CheckRepresentative(username))//בודק אם המשתמש הוא נציג התאחדות
             return;
         //System.out.println("Set password:");
-        String password = UserService.reader.next();
-        Referee ref = new Referee(username, password, name, training);
+        Member mem = null;
+        ArrayList<Member> members=ud.getMembers();
+        for (Member m:members){
+            if(m.getUserName().equals(name))
+                mem=m;
+        }
+        if (mem==null){
+            return;
+        }
+        Referee ref = new Referee(mem, name, training);
         ud.update(ref,null);
     }
 
