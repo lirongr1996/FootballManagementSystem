@@ -39,7 +39,6 @@ public class System {
     public void RefereeRegistration(String username, String name,String training){
         if (!CheckRepresentative(username))//בודק אם המשתמש הוא נציג התאחדות
             return;
-        //System.out.println("Set password:");
         Member mem = null;
         ArrayList<Member> members=ud.getMembers();
         for (Member m:members){
