@@ -47,12 +47,12 @@ public class UserService {
                         System.out.println("you need to login first");
                         break;
                     }
-                    input=getInput("Enter referee's name: ","Enter the training: ");
+                    input=getInput("Enter the league: ","Enter the season: ");
                     ac.Placement(username,input[0],input[1]);
                     break;
             }
 
-        }while(chosen==4);
+        }while(chosen!=4);
 
     }
 }

@@ -9,14 +9,16 @@ import java.util.*;
 public class UserDao implements Dao<Member> {
     private ArrayList<Member> members = new ArrayList<>();
     private ArrayList<Team>teams=new ArrayList<>();
-    private ArrayList<League> leagues;
-    private ArrayList<Game>games;
-    private ArrayList<Season> seasons;
+    private ArrayList<League> leagues=new ArrayList<>();
+    private ArrayList<Game>games=new ArrayList<>();
+    private ArrayList<Season> seasons=new ArrayList<>();
 
-    private static final UserDao instance = new UserDao();
+    private static UserDao instance = null;// UserDao();
 
     //private constructor to avoid client applications to use constructor
      public static UserDao getInstance(){
+         if (instance==null)
+             instance=new UserDao();
         return instance;
     }
 
@@ -25,10 +27,14 @@ public class UserDao implements Dao<Member> {
         PlacementPolicy placementPolicy=new PlacementPolicy(2);
          this.leagues.add(new League("Israel"));
          this.seasons.add(new Season("2022",leagues.get(0),placementPolicy));
-         teams.add(new Team(new PrivatePage(),new Owner("lirongr1996","liron123","liron"),new Field("Tel Aviv","Bloomfield"),leagues.get(0)));
-         teams.add(new Team(new PrivatePage(),new Owner("shirinda","shir123","shir"),new Field("Jerusalem","Tedi"),leagues.get(0)));
-         teams.add(new Team(new PrivatePage(),new Owner("annakol","anna123","anna"),new Field("Beer Sheva","Terner"),leagues.get(0)));
-         teams.add(new Team(new PrivatePage(),new Owner("nirCohen","nir123","nir"),new Field("Haifa","Sami Ofer"),leagues.get(0)));
+        members.add(new Owner("lirongr1996","liron123","liron"));
+        members.add(new Owner("shirinda","shir123","shir"));
+        members.add(new Owner("annakol","anna123","anna"));
+        members.add(new Owner("nirCohen","nir123","nir"));
+         teams.add(new Team(new PrivatePage(),(Owner)members.get(1),new Field("Tel Aviv","Bloomfield"),leagues.get(0)));
+         teams.add(new Team(new PrivatePage(),(Owner)members.get(2),new Field("Jerusalem","Tedi"),leagues.get(0)));
+         teams.add(new Team(new PrivatePage(),(Owner)members.get(3),new Field("Beer Sheva","Terner"),leagues.get(0)));
+         teams.add(new Team(new PrivatePage(),(Owner)members.get(4),new Field("Haifa","Sami Ofer"),leagues.get(0)));
 
 
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");

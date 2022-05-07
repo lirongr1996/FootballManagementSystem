@@ -14,8 +14,10 @@ public class Team {
 
     public Team(PrivatePage page, Owner owner, Field field, League league) {
         this.page = page;
+        this.owners=new ArrayList<>();
         this.owners.add(owner);
         owner.setTeam(this);
+        this.fields=new ArrayList<>();
         this.fields.add(field);
         this.league = league;
     }

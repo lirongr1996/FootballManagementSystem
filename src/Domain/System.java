@@ -33,7 +33,7 @@ public class System {
                 return username;
             }
         }
-        return "Not a member? Please register first";
+        return null;
     }
 
     public void RefereeRegistration(String username, String name,String training){
