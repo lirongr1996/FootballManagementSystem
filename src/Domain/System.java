@@ -59,9 +59,10 @@ public class System {
         ArrayList<Team> teams=ud.getTeams();
         ArrayList<Game> games=ud.getGames();
         ArrayList <Game> inSeason=new ArrayList<>();
-        if (!CheckRepresentative(username) || teams.isEmpty() || games.isEmpty())
+        if (!CheckRepresentative(username))
             return false;
-
+        if(teams.isEmpty())
+            return false;
         for (Game g:games){
             if(g.getSeason().getYear().equals(season) && g.getLeague().getName().equals(league)){
                 inSeason.add(g);
