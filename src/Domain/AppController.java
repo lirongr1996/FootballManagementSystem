@@ -3,8 +3,8 @@ package Domain;
 public class AppController {
     System system=new System();
 
-    public void Placement(String username, String league,String season){
-        system.GamesPlacement(username,league,season);
+    public boolean Placement(String username, String league,String season){
+        return system.GamesPlacement(username,league,season);
     }
 
 

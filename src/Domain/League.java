@@ -18,4 +18,8 @@ public class League {
     public PlacementPolicy getPolicy(Season s){
         return seasonPlacementPolicy.get(s);
     }
+
+    public String getName() {
+        return name;
+    }
 }

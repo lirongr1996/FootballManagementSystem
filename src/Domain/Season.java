@@ -13,4 +13,8 @@ public class Season {
         l.setSeasonPlacementPolicyHashMap(this,p);
         p.Set(this,l);
     }
+
+    public String getYear() {
+        return year;
+    }
 }
