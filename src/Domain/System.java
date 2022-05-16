@@ -38,7 +38,7 @@ public class System {
 
     public boolean RefereeRegistration(String username, String name,String training) {
         if (!CheckRepresentative(username))//בודק אם המשתמש הוא נציג התאחדות
-            return false;
+            return true;
         Member mem = null;
         ArrayList<Member> members = ud.getMembers();
         for (Member m : members) {

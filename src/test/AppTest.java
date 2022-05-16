@@ -99,4 +99,18 @@ public class AppTest {
         String flag= appController.login("Anna","M123");
         assertEquals(false, flag);
     }
+    @Test
+    @DisplayName("integration- login and assign Referee")
+    public void LoginAndAssignReferee() {
+        String name=appController.login("Moshe","M123");
+        boolean flag= appController.RefereeRegistration("Moshe","Moshe","2022");
+        assertEquals(true, flag);
+    }
+    @Test
+    @DisplayName("integration- login and assign Referee invalid")
+    public void LoginAndAssignRefereeInvalid() {
+        String name=appController.login("Liron","M123");
+        boolean flag= appController.RefereeRegistration("Moshe","Moshe","2022");
+        assertEquals(true, flag);
+    }
 }
