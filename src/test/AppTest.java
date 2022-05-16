@@ -69,4 +69,34 @@ public class AppTest {
         boolean flag= appController.Placement(name,"Israel","2022");
         assertEquals(false, flag);
     }
+    @Test
+    @DisplayName("Failed to login")
+    public void LoginWithoutUsername() {
+        String flag= appController.login(null,"M123");
+        assertEquals(false, flag);
+    }
+    @Test
+    @DisplayName("Failed to login")
+    public void LoginWithoutPassword() {
+        String flag= appController.login("Anna",null);
+        assertEquals(false, flag);
+    }
+    @Test
+    @DisplayName("Login successfully")
+    public void LoginSuccessfully() {
+        String flag= appController.login("Moshe","M123");
+        assertEquals(true, flag);
+    }
+    @Test
+    @DisplayName("Failed to login")
+    public void LoginWitWrongPassword() {
+        String flag= appController.login("Moshe","123");
+        assertEquals(false, flag);
+    }
+    @Test
+    @DisplayName("Failed to login")
+    public void LoginWitWrongUsername() {
+        String flag= appController.login("Anna","M123");
+        assertEquals(false, flag);
+    }
 }
