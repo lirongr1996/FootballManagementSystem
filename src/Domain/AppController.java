@@ -13,7 +13,7 @@ public class AppController {
     }
 
 
-    public void RefereeRegistration(String username, String name,String training){
-        system.RefereeRegistration(username,name,training);
+    public boolean RefereeRegistration(String username, String name,String training){
+        return system.RefereeRegistration(username,name,training);
     }
 }

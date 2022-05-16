@@ -36,20 +36,21 @@ public class System {
         return null;
     }
 
-    public void RefereeRegistration(String username, String name,String training){
+    public boolean RefereeRegistration(String username, String name,String training) {
         if (!CheckRepresentative(username))//בודק אם המשתמש הוא נציג התאחדות
-            return;
+            return false;
         Member mem = null;
-        ArrayList<Member> members=ud.getMembers();
-        for (Member m:members){
-            if(m.getUserName().equals(name))
-                mem=m;
+        ArrayList<Member> members = ud.getMembers();
+        for (Member m : members) {
+            if (m.getUserName().equals(name))
+                mem = m;
         }
-        if (mem==null){
-            return;
+        if (mem == null) {
+            return false;
         }
         Referee ref = new Referee(mem, name, training);
-        ud.update(ref,null);
+        ud.update(ref, null);
+        return true;
     }
 
 
