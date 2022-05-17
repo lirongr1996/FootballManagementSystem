@@ -1,23 +1,49 @@
+import DataAccess.StubDao;
 import Domain.AppController;
+import Domain.StubSystem;
+import Domain.SystemApp;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.condition.EnabledOnOs;
-import org.junit.jupiter.api.condition.OS;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvFileSource;
-import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class AppTest {
     private AppController appController;
+    private SystemApp systemApp;
+    private StubSystem systemStub;
 
     @BeforeEach
     public void setup() {
         System.out.println("Instantiating AppController");
         appController = new AppController();
+        systemApp =new SystemApp();
+        systemStub=new StubSystem();
     }
+
+    //=======================Unit====================================//
+
+    @Test
+    @DisplayName("Check Representative Valid")
+    public void CheckRepresentativeValid() {
+        boolean flag= systemApp.CheckRepresentative("Moshe");
+        assertEquals(true, flag);
+    }
+
+    @Test
+    @DisplayName("Check Representative Invalid")
+    public void CheckRepresentativeInvalid() {
+        boolean flag= systemApp.CheckRepresentative("liron");
+        assertEquals(false, flag);
+    }
+
+    @Test
+    @DisplayName("Should schedule game")
+    public void ScheduleGameStub() {
+        boolean flag= systemStub.GamesPlacement("Emma","Israel","2022");
+        assertEquals(true, flag);
+    }
+
+
+    //=======================Acceptance====================================//
 
     @Test
     @DisplayName("Should not schedule game")
@@ -54,6 +80,65 @@ public class AppTest {
         assertEquals(true, flag);
     }
 
+
+    @Test
+    @DisplayName("Failed to login")
+    public void LoginWithoutUsername() {
+        String flag= appController.login(null,"M123");
+        assertEquals(null, flag);
+    }
+    @Test
+    @DisplayName("Failed to login")
+    public void LoginWithoutPassword() {
+        String flag= appController.login("Anna",null);
+        assertEquals(null, flag);
+    }
+    @Test
+    @DisplayName("Login successfully")
+    public void LoginSuccessfully() {
+        String flag= appController.login("Moshe","M123");
+        assertEquals("Moshe", flag);
+    }
+    @Test
+    @DisplayName("Failed to login")
+    public void LoginWitWrongPassword() {
+        String flag= appController.login("Moshe","123");
+        assertEquals(null, flag);
+    }
+    @Test
+    @DisplayName("Failed to login")
+    public void LoginWitWrongUsername() {
+        String flag= appController.login("Anna","M123");
+        assertEquals(null, flag);
+    }
+    @Test
+    @DisplayName("integration- login and assign Referee")
+    public void LoginAndAssignReferee() {
+        String name=appController.login("Moshe","M123");
+        boolean flag= appController.RefereeRegistration(name,"Adam","2022");
+        assertEquals(true, flag);
+    }
+
+
+
+    //=======================integration====================================//
+    @Test
+    @DisplayName("integration- login and assign Referee invalid")
+    public void LoginAndAssignRefereeInvalidRegister() {
+        String name=appController.login("Liron","M123");
+        boolean flag= appController.RefereeRegistration(name,"Adam","2022");
+        assertEquals(false, flag);
+    }
+
+
+    @Test
+    @DisplayName("integration- login and assign Referee invalid")
+    public void LoginAndAssignRefereeInvalidMember() {
+        String name=appController.login("Moshe","M123");
+        boolean flag= appController.RefereeRegistration(name,"David","2022");
+        assertEquals(false, flag);
+    }
+
     @Test
     @DisplayName("integration- login and schedule game")
     public void LoginAndSchedule() {
@@ -69,48 +154,5 @@ public class AppTest {
         boolean flag= appController.Placement(name,"Israel","2022");
         assertEquals(false, flag);
     }
-    @Test
-    @DisplayName("Failed to login")
-    public void LoginWithoutUsername() {
-        String flag= appController.login(null,"M123");
-        assertEquals(false, flag);
-    }
-    @Test
-    @DisplayName("Failed to login")
-    public void LoginWithoutPassword() {
-        String flag= appController.login("Anna",null);
-        assertEquals(false, flag);
-    }
-    @Test
-    @DisplayName("Login successfully")
-    public void LoginSuccessfully() {
-        String flag= appController.login("Moshe","M123");
-        assertEquals(true, flag);
-    }
-    @Test
-    @DisplayName("Failed to login")
-    public void LoginWitWrongPassword() {
-        String flag= appController.login("Moshe","123");
-        assertEquals(false, flag);
-    }
-    @Test
-    @DisplayName("Failed to login")
-    public void LoginWitWrongUsername() {
-        String flag= appController.login("Anna","M123");
-        assertEquals(false, flag);
-    }
-    @Test
-    @DisplayName("integration- login and assign Referee")
-    public void LoginAndAssignReferee() {
-        String name=appController.login("Moshe","M123");
-        boolean flag= appController.RefereeRegistration("Moshe","Moshe","2022");
-        assertEquals(true, flag);
-    }
-    @Test
-    @DisplayName("integration- login and assign Referee invalid")
-    public void LoginAndAssignRefereeInvalid() {
-        String name=appController.login("Liron","M123");
-        boolean flag= appController.RefereeRegistration("Moshe","Moshe","2022");
-        assertEquals(true, flag);
-    }
+
 }

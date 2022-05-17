@@ -2,21 +2,28 @@ package Domain;
 
 import DataAccess.Dao;
 import DataAccess.UserDao;
-import Service.UserService;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class System {
-    UserDao ud;
-    public System() {
+public class SystemApp {
+    Dao ud;
+
+    public SystemApp() {
         ud = UserDao.getInstance();
         ArrayList<Member> members=ud.getMembers();
+        boolean flag=false;
         for (Member m:members){
-            if(m instanceof RepresentativeAssociation)
-                ((RepresentativeAssociation)m).setSystem(this);
+            if(m instanceof RepresentativeAssociation) {
+                flag = true;
+                break;
+            }
         }
+        if(!flag)
+            ud.update(new RepresentativeAssociation("Moshe","M123","Moshe"));
     }
+
+
+
     public boolean CheckRepresentative(String username){
         ArrayList<Member> members=ud.getMembers();
         for (Member m:members){
@@ -38,7 +45,7 @@ public class System {
 
     public boolean RefereeRegistration(String username, String name,String training) {
         if (!CheckRepresentative(username))//בודק אם המשתמש הוא נציג התאחדות
-            return true;
+            return false;
         Member mem = null;
         ArrayList<Member> members = ud.getMembers();
         for (Member m : members) {
@@ -49,7 +56,7 @@ public class System {
             return false;
         }
         Referee ref = new Referee(mem, name, training);
-        ud.update(ref, null);
+        ud.update(ref);
         return true;
     }
 

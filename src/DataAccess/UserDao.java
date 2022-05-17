@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-public class UserDao implements Dao<Member> {
+public class UserDao implements Dao {
     private ArrayList<Member> members = new ArrayList<>();
     private ArrayList<Team>teams=new ArrayList<>();
     private ArrayList<League> leagues=new ArrayList<>();
@@ -50,14 +50,12 @@ public class UserDao implements Dao<Member> {
 
 
         members.add(new RepresentativeAssociation("Moshe","M123","Moshe"));
+        members.add(new Member("Adam","adam123"));
     }
 
-//    @Override
-//    public Optional<Member> get(long id) {
-//        return Optional.ofNullable(members.get((int) id));
-//    }
 
-    //@Override
+
+    @Override
     public ArrayList<Game> getGames() {
         return games;
     }
@@ -78,23 +76,10 @@ public class UserDao implements Dao<Member> {
         return teams;
     }
 
-    //    @Override
-    public void save(Member user) {
+
+    @Override
+    public void update(Member user) {
         members.add(user);
-               System.out.println(members.toString());
     }
 
-//    @Override
-    public void update(Member user, String[] params) {
-        //user.setName(Objects.requireNonNull(                 params[0], "Name cannot be null"));
-        //user.setEmail(Objects.requireNonNull(                params[1], "Email cannot be null"));
-
-        members.add(user);
-        members.toString();
-    }
-
-//    @Override
-    public void delete(Member user) {
-        members.remove(user);
-    }
 }
