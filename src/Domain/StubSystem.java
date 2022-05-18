@@ -90,8 +90,9 @@ public class StubSystem {
         if(username==null || name==null || training==null){
             return false;
         }
-        if (!CheckRepresentative(username))//בודק אם המשתמש הוא נציג התאחדות
-            return false;
+        //stub
+        //if (!CheckRepresentative(username))//בודק אם המשתמש הוא נציג התאחדות
+            //return false;
         Member mem = null;
         ArrayList<Member> members = ud.getMembers();
         for (Member m : members) {
