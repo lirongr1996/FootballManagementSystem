@@ -114,13 +114,13 @@ public class AppTest {
     }
     @Test
     @DisplayName("Failed to login")
-    public void LoginWitWrongPassword() {
+    public void LoginWithWrongPassword() {
         String flag= appController.login("Moshe","123");
         assertEquals(null, flag);
     }
     @Test
     @DisplayName("Failed to login")
-    public void LoginWitWrongUsername() {
+    public void LoginWithWrongUsername() {
         String flag= appController.login("Anna","M123");
         assertEquals(null, flag);
     }
@@ -128,7 +128,7 @@ public class AppTest {
     @Test
     @DisplayName("Register referee success")
     public void RegisterRefereeApp() {
-        boolean flag = appController.RefereeRegistration("Moshe","Moshe","Kavan");
+        boolean flag = appController.RefereeRegistration("Adam","Moshe","Kavan");
         assertEquals(false, flag);
     }
     

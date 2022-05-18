@@ -52,7 +52,7 @@ public class SystemApp {
             if (m.getUserName().equals(name))
                 mem = m;
         }
-        if (mem == null) {
+        if (mem == null || training==null) {
             return false;
         }
         Referee ref = new Referee(mem, name, training);
