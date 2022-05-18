@@ -48,7 +48,14 @@ public class AppTest {
         String flag= systemStub.login("Moshe","M123");
         assertEquals("Moshe", flag);
     }
-
+    
+    @Test
+    @DisplayName("Register referee")
+    public void RegisterRefereeStub() {
+        boolean flag = systemStub.RefereeRegistration("Emma","Moshe","Kavan");
+        assertEquals(true, flag);
+    }
+    
 
     //=======================Acceptance====================================//
 
@@ -116,6 +123,40 @@ public class AppTest {
     public void LoginWitWrongUsername() {
         String flag= appController.login("Anna","M123");
         assertEquals(null, flag);
+    }
+    
+    @Test
+    @DisplayName("Register referee")
+    public void RegisterRefereeApp() {
+        boolean flag = appController.RefereeRegistration("Moshe","Moshe","Kavan");
+        assertEquals(false, flag);
+    }
+    
+    @Test
+    @DisplayName("Register referee")
+    public void RegisterRefereeApp() {
+        boolean flag = systemStub.RefereeRegistration("Moshe","Moshe","Kavan");
+        assertEquals(true, flag);
+    }
+    @Test
+    @DisplayName("Register referee")
+    public void RegisterRefereeNoUsernameApp() {
+        boolean flag = appController.RefereeRegistration(null,"Moshe","Kavan");
+        assertEquals(false, flag);
+    }
+    
+    @Test
+    @DisplayName("Register referee")
+    public void RegisterRefereeNoNameApp() {
+        boolean flag = appController.RefereeRegistration("Moshe",null,"Kavan");
+        assertEquals(false, flag);
+    }
+    
+    @Test
+    @DisplayName("Register referee")
+    public void RegisterRefereeNoTrainingApp() {
+        boolean flag = appController.RefereeRegistration("Moshe","Moshe",null);
+        assertEquals(false, flag);
     }
 
 
