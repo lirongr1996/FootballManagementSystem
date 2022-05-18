@@ -42,6 +42,13 @@ public class AppTest {
         assertEquals(true, flag);
     }
 
+    @Test
+    @DisplayName("Should login")
+    public void loginStub() {
+        String flag= systemStub.login("Moshe","M123");
+        assertEquals("Moshe", flag);
+    }
+
 
     //=======================Acceptance====================================//
 
@@ -80,7 +87,6 @@ public class AppTest {
         assertEquals(true, flag);
     }
 
-
     @Test
     @DisplayName("Failed to login")
     public void LoginWithoutUsername() {
@@ -111,6 +117,10 @@ public class AppTest {
         String flag= appController.login("Anna","M123");
         assertEquals(null, flag);
     }
+
+
+    //=======================integration====================================//
+
     @Test
     @DisplayName("integration- login and assign Referee")
     public void LoginAndAssignReferee() {
@@ -118,10 +128,6 @@ public class AppTest {
         boolean flag= appController.RefereeRegistration(name,"Adam","2022");
         assertEquals(true, flag);
     }
-
-
-
-    //=======================integration====================================//
     @Test
     @DisplayName("integration- login and assign Referee invalid")
     public void LoginAndAssignRefereeInvalidRegister() {

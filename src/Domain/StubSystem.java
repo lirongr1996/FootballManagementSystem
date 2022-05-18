@@ -75,4 +75,15 @@ public class StubSystem {
         }
         return  true;
     }
+
+    public String login(String username,String password){// הפונקציה מחזירה ל-UserService את השם משתמש כמחרוזת ,וכך מסמל את ההתחברות
+        ArrayList<Member> members=ud.getMembers();
+        for (Member m:members){
+            if(m.getUserName().equals(username) && m.getPassword().equals(password)) {
+                return username;
+            }
+        }
+        return null;
+    }
+
 }
