@@ -50,7 +50,7 @@ public class AppTest {
     }
     
     @Test
-    @DisplayName("Register referee")
+    @DisplayName("Should Register referee")
     public void RegisterRefereeStub() {
         boolean flag = systemStub.RefereeRegistration("Emma","Moshe","Kavan");
         assertEquals(true, flag);
@@ -126,34 +126,28 @@ public class AppTest {
     }
     
     @Test
-    @DisplayName("Register referee")
+    @DisplayName("Register referee success")
     public void RegisterRefereeApp() {
         boolean flag = appController.RefereeRegistration("Moshe","Moshe","Kavan");
         assertEquals(false, flag);
     }
     
     @Test
-    @DisplayName("Register referee")
-    public void RegisterRefereeApp() {
-        boolean flag = systemStub.RefereeRegistration("Moshe","Moshe","Kavan");
-        assertEquals(true, flag);
-    }
-    @Test
-    @DisplayName("Register referee")
+    @DisplayName("Register referee fail - username=null")
     public void RegisterRefereeNoUsernameApp() {
         boolean flag = appController.RefereeRegistration(null,"Moshe","Kavan");
         assertEquals(false, flag);
     }
     
     @Test
-    @DisplayName("Register referee")
+    @DisplayName("Register referee fail - name=null")
     public void RegisterRefereeNoNameApp() {
         boolean flag = appController.RefereeRegistration("Moshe",null,"Kavan");
         assertEquals(false, flag);
     }
     
     @Test
-    @DisplayName("Register referee")
+    @DisplayName("Register referee fail - training=null")
     public void RegisterRefereeNoTrainingApp() {
         boolean flag = appController.RefereeRegistration("Moshe","Moshe",null);
         assertEquals(false, flag);
