@@ -87,6 +87,9 @@ public class StubSystem {
     }
     
     public boolean RefereeRegistration(String username, String name,String training) {
+        if(username==null || name==null || training==null){
+            return false;
+        }
         if (!CheckRepresentative(username))//בודק אם המשתמש הוא נציג התאחדות
             return false;
         Member mem = null;
